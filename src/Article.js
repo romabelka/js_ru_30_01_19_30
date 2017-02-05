@@ -1,25 +1,20 @@
 import React, {Component} from 'react'
+import CommentList from './CommentList'
+
 
 export default class Article extends Component {
     state = {
         isOpen: false
     }
-/*
-    constructor(props) {
-        super(props)
-        this.state = {
-            isOpen: props.defaultOpen
-        }
-    }
-*/
 
     render() {
         const {article} = this.props
-        console.log('---', 123)
+        const {comments} = article
         return (
             <div>
                 <h3 onClick={this.handleClick}>{article.title}</h3>
                 {this.getBody()}
+                <CommentList comments={comments}></CommentList>
             </div>
         )
     }
@@ -31,6 +26,7 @@ export default class Article extends Component {
             <section>
                 {this.props.article.text}
             </section>
+
         )
     }
 
