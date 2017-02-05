@@ -12,7 +12,10 @@ export default class CommentList extends Component {
 
         return (
             <div>
-                <h4 id="comments_button" onClick={this.handleClick}>sfgdfg</h4>
+                <h4 onClick={this.handleClick}>
+                    {this.state.isOpen ? 'Hide Comments' : 'Show Comments'}
+                </h4>
+
                 <ul>
                     {this.getComments()}
                 </ul>
@@ -22,29 +25,17 @@ export default class CommentList extends Component {
 
     getComments() {
         if (!this.state.isOpen) return null;
-        const result = this.props.comments.map((comment) => <li key={comment.id}>
-                <Comment text={comment.text}/>
-            </li>
+        const result = this.props.comments.map((comment) =>
+                <li key={comment.id}>
+                    <Comment text={comment.text}/>
+                </li>
         );
-
         return result
-    };
+    }
 
     handleClick = (ev) => {
         this.setState({
             isOpen: !this.state.isOpen
-
         });
-        if(this.state.isOpen){
-            var button = document.getElementById('comments_button');
-            button.innerHTML =  'Hide Comments'
-        }else{
-            var button = document.getElementById('comments_button');
-            button.innerHTML =  'Show Comments'
-        }
     };
-
-
-
-
 }
