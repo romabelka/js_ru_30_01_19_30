@@ -3,15 +3,6 @@ import CommentList from './CommentList'
 
 export default class Article extends Component {
 
-/*
-    constructor(props) {
-        super(props)
-        this.state = {
-            isOpen: props.defaultOpen
-        }
-    }
-*/
-
     state = {
         isOpen: false
     };
@@ -22,12 +13,11 @@ export default class Article extends Component {
             <div>
                 <h3 onClick={this.handleClick}>{article.title}</h3>
                 {this.getBody()}
-
             </div>
         )
     }
 
-    getBody(article) {
+    getBody() {
         if (!this.state.isOpen) return null;
 
         return (

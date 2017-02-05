@@ -5,5 +5,3 @@ export default class Comment extends Component {
         return <div>{this.props.text}</div>
     }
 }
-
-
