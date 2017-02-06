@@ -31,6 +31,7 @@ export default class Article extends Component {
     if (!this.state.isOpen) return null
     let { article } = this.props
     let { article: { comments } } = this.props
+    //Я б эту проверку спрятал в CommentList
     let commentsList = comments ? <CommentsList article={article}/> : ''
     return (
       <section>
