@@ -12,3 +12,7 @@ export default function ArticleList(props) {
         </ul>
     )
 }
+
+ArticleList.defaultProps = {
+    articles: []
+}
