@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 
+//Зачем ты делал список внутри списка?
 export default class Comments extends Component {
 	state = {
     isOpen: false
