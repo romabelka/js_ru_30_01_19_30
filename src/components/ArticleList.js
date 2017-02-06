@@ -1,5 +1,5 @@
 import React from 'react'
-import Article from './Article'
+import Article from './ArticleOld'
 
 export default function ArticleList(props) {
     const {articles} = props
