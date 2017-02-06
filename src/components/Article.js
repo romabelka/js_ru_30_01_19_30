@@ -22,12 +22,19 @@ export default class Article extends Component {
     }
 */
 
+    componentWillMount() {
+    }
+
+    componentDidMount() {
+    }
+
     render() {
         const {article} = this.props
         return (
             <div>
                 <h3 onClick={this.handleClick}>{article.title}</h3>
                 {this.getBody()}
+                <h2 onClick = {() => this.setState({})}>click me</h2>
             </div>
         )
     }

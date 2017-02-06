@@ -5,6 +5,18 @@ class CommentList extends Component {
     static defaultProps = {
         comments: []
     }
+    componentDidMount() {
+        console.log('---', 'mounted')
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('---', this.props, nextProps)
+    }
+
+
+    componentWillUnmount() {
+        console.log('---', 'unmounting')
+    }
 
     state = {
         isOpen: false
