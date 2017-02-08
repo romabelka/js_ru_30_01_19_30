@@ -3,16 +3,18 @@ import React from 'react'
 
 export default (Component) => class WrappedComponent extends React.Component {
     state = {
-        isOpen: false
+        isOpen: false,
+        openArticleId: null
     }
 
-    toggleOpen = (ev) => {
+    toggleOpenArticle = openArticleId => ev => {
+        ev && ev.preventDefault && ev.preventDefault()
         this.setState({
-            isOpen: !this.state.isOpen
+            openArticleId
         })
     }
 
     render() {
-        return <Component {...this.props} {...this.state} toggleOpen={this.toggleOpen}/>
+        return <Component {...this.props} {...this.state} toggleOpen={this.toggleOpenArticle}/>
     }
 }
