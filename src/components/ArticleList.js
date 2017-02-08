@@ -1,36 +1,28 @@
 import React, {Component} from 'react'
 import Article from './Article'
+import toggleOpen from '../decorators/toggleOpen'
+//а здесь где проверка типов?
+function ArticleList (props) {
 
-export default class ArticleList extends Component {
 
-    state = {
-        openArticleId: null
-    }
+    const {articles, toggleOpen, openArticleId} = props
+    const articleElements = articles.map((article) => <li key={article.id}>
+        <Article
+            article={article}
+            isOpen={article.id === openArticleId}
+            toggleOpen={toggleOpen(article.id)} />
+    </li>)
+    return (
+        <ul>
+            {articleElements}
+        </ul>
+    )
 
-    render() {
-        const {articles} = this.props
-        const articleElements = articles.map((article) => <li key={article.id}>
-            <Article
-                article={article}
-                isOpen={article.id == this.state.openArticleId}
-                toggleOpen={this.toggleOpenArticle(article.id)}/>
-        </li>)
-        return (
-            <ul>
-                {articleElements}
-            </ul>
-        )
-    }
-
-    toggleOpenArticle = openArticleId => ev => {
-        ev && ev.preventDefault && ev.preventDefault()
-        this.setState({
-            openArticleId
-        })
-    }
 }
 
 
 ArticleList.defaultProps = {
     articles: []
 }
+
+export default toggleOpen(ArticleList)

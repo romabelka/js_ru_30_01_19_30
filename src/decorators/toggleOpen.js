@@ -2,17 +2,21 @@
 import React from 'react'
 
 export default (Component) => class WrappedComponent extends React.Component {
+
     state = {
-        isOpen: false
+        //Не привязывайся к названиям сущностей, вся суть декораторов в универсальности. Сделай openItemId
+        openArticleId: null
     }
 
-    toggleOpen = (ev) => {
+
+    toggleOpenArticle = openArticleId => ev => {
+        ev && ev.preventDefault && ev.preventDefault()        
         this.setState({
-            isOpen: !this.state.isOpen
+            openArticleId: openArticleId !== this.state.openArticleId ? openArticleId : null,
         })
     }
 
     render() {
-        return <Component {...this.props} {...this.state} toggleOpen={this.toggleOpen}/>
+        return <Component {...this.props} {...this.state} toggleOpen={this.toggleOpenArticle}/>
     }
 }

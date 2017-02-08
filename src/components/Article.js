@@ -1,30 +1,22 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import CommentList from './CommentList'
-//import toggleOpen from '../decorators/toggleOpen'
+import checkingTypes from '../decorators/checkingTypes'
 
-class Article extends Component {
-    static propTypes = {
-        article: PropTypes.shape({
-            title: PropTypes.string.isRequired,
-            text: PropTypes.string.isRequired,
-            comments: PropTypes.array
-        }).isRequired
-    }
+function Article(props) {
 
-    render() {
-        const {article, toggleOpen} = this.props
-        return (
-            <div>
-                <h3 onClick={toggleOpen}>{article.title}</h3>
-                {this.getBody()}
-            </div>
-        )
-    }
 
-    getBody() {
-        const {isOpen, article: {text, comments}} = this.props
+    const {article, toggleOpen, openArticleId} = props
+    return (
+        <div>
+            <h3 onClick={toggleOpen}>{article.title}</h3>
+            {getBody()}
+        </div>
+    )
+
+
+    function getBody() {
+        const {isOpen, article: {text, comments}} = props
         if (!isOpen) return null
-
         return (
             <section>
                 {text}
@@ -34,4 +26,4 @@ class Article extends Component {
     }
 }
 
-export default Article
+export default checkingTypes(Article)
