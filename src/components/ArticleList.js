@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Article from './Article'
 import toggleOpen from '../decorators/toggleOpen'
-
+//а здесь где проверка типов?
 function ArticleList (props) {
 
 
