@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react'
 
+//декоратор для проверки типа списка статей - это уже перебор
 export default (Component) => class CheckingComponent extends React.Component {
     static propTypes = {
       article: PropTypes.shape({
