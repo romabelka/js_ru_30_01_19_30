@@ -1,6 +1,6 @@
-import React  from 'react'
+import React, {Component as ReactComponent}  from 'react'
 
-export default (Component) => class Accordion extends Component {
+export default (Component) => class Accordion extends ReactComponent {
     state = {
         openItemId: null
     }

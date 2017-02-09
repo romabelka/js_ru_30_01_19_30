@@ -21,8 +21,13 @@ class ArticleList extends Component {
 
 export default accordion(ArticleList)
 
-ArticleList.defaultProps = {
-    articles: [],
+ArticleList.propTypes = {
+    articles: PropTypes.array.isRequired,
+    //from accordion decorator
     isOpenItem: PropTypes.func.isRequired,
     toggleOpenItem: PropTypes.func.isRequired
+}
+
+ArticleList.defaultProps = {
+    articles: []
 }
