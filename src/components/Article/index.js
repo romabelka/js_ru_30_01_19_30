@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react'
 import {findDOMNode} from 'react-dom'
-import CommentList from './CommentList'
+import CommentList from '../CommentList'
+import CSSTransition from 'react-addons-css-transition-group'
+import './style.css'
 
 class Article extends Component {
     static propTypes = {
@@ -24,7 +26,13 @@ class Article extends Component {
         return (
             <div ref = {this.getContainerRef}>
                 <h3 onClick={toggleOpen}>{article.title}</h3>
-                {this.getBody()}
+                <CSSTransition
+                    transitionName="article-body"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={300}
+                >
+                    {this.getBody()}
+                </CSSTransition>
             </div>
         )
     }
