@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react'
+import {findDOMNode} from 'react-dom'
 import CommentList from './CommentList'
 
 class Article extends Component {
@@ -15,11 +16,20 @@ class Article extends Component {
     render() {
         const {article, toggleOpen} = this.props
         return (
-            <div>
+            <div ref = {this.getContainerRef}>
                 <h3 onClick={toggleOpen}>{article.title}</h3>
                 {this.getBody()}
             </div>
         )
+    }
+
+    getContainerRef = (ref) => {
+        this.container = ref
+    }
+
+    getCommentsRef = (ref) => {
+        this.commentList = ref
+        console.log('---', ref.state.isOpen, findDOMNode(ref))
     }
 
     getBody() {
@@ -29,7 +39,7 @@ class Article extends Component {
         return (
             <section>
                 {text}
-                <CommentList comments={comments}/>
+                <CommentList comments={comments} ref = {this.getCommentsRef} />
             </section>
         )
     }
