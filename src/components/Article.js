@@ -12,6 +12,12 @@ class Article extends Component {
         isOpen: PropTypes.bool,
         toggleOpen: PropTypes.func
     }
+/*
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.isOpen !== this.props.isOpen
+    }
+*/
 
     render() {
         const {article, toggleOpen} = this.props
@@ -29,6 +35,7 @@ class Article extends Component {
 
     getCommentsRef = (ref) => {
         this.commentList = ref
+        if (!ref) return null
         console.log('---', ref.state.isOpen, findDOMNode(ref))
     }
 
