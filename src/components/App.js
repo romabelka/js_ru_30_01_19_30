@@ -32,7 +32,7 @@ class App extends Component {
         if (ev.target.value.length < 10) {
             this.setState({
                 user: ev.target.value
-            })
+            })    
         }
     }
 }
