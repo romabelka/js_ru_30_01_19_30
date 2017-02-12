@@ -6,8 +6,8 @@ class Chart extends Component {
     };
 
     componentDidMount() {
-        //do smth(draw a chart?) with this.refs.container
-//        console.log('---', 'chart container: ', this.refs.container)
+        // do smth(draw a chart?) with this.refs.container
+        // console.log('---', 'chart container: ', this.refs.container)
     }
 
     render() {

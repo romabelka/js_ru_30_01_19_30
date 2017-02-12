@@ -2,6 +2,8 @@ import React, { PropTypes, Component } from 'react'
 import ArticleList from './ArticleList'
 import Chart from './Chart'
 import Select from 'react-select'
+import RangeDays from './RangeDays'
+
 import 'react-select/dist/react-select.css'
 
 class App extends Component {
@@ -22,6 +24,7 @@ class App extends Component {
                 <Select options = {options} onChange={this.handleSelectChange} value={this.state.selection} multi/>
                 <ArticleList articles={articles}/>
                 <Chart articles={articles}/>
+                <RangeDays />
             </div>
         )
     }
