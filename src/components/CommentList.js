@@ -1,7 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import Comment from './Comment'
 
 class CommentList extends Component {
+    static propTypes = {
+        comments: PropTypes.array
+    }
     static defaultProps = {
         comments: []
     }
@@ -10,12 +13,12 @@ class CommentList extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('---', this.props, nextProps)
+       // console.log('---', this.props, nextProps)
     }
 
 
     componentWillUnmount() {
-        console.log('---', 'unmounting')
+        //console.log('---', 'unmounting')
     }
 
     state = {
