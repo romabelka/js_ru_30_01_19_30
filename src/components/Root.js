@@ -11,7 +11,7 @@ class Root extends Component {
     render() {
         return (
             <Provider store={store}>
-                <App articles={[]} />
+                <App />
             </Provider>
         )
     }

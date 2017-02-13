@@ -5,6 +5,7 @@ import Select from 'react-select'
 import DateRange from './DateRange'
 import 'react-select/dist/react-select.css'
 import Counter from './Counter'
+import {connect} from 'react-redux'
 
 class App extends Component {
     state = {
@@ -45,4 +46,6 @@ App.propTypes = {
     articles: PropTypes.array.isRequired
 }
 
-export default App
+export default connect(state => ({
+    articles: state.articles
+}))(App)
