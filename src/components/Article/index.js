@@ -3,6 +3,8 @@ import {findDOMNode} from 'react-dom'
 import CommentList from '../CommentList'
 import CSSTransition from 'react-addons-css-transition-group'
 import './style.css'
+import {connect} from 'react-redux'
+import {deleteArticle} from '../../AC'
 
 class Article extends Component {
     static propTypes = {
@@ -25,7 +27,10 @@ class Article extends Component {
         const {article, toggleOpen} = this.props
         return (
             <div ref = {this.getContainerRef}>
-                <h3 onClick={toggleOpen}>{article.title}</h3>
+                <h3 onClick={toggleOpen}>
+                    {article.title}
+                    <a href="#" onClick = {this.handleDelete}>Delete me</a>
+                </h3>
                 <CSSTransition
                     transitionName="article-body"
                     transitionEnterTimeout={500}
@@ -44,7 +49,7 @@ class Article extends Component {
     getCommentsRef = (ref) => {
         this.commentList = ref
         if (!ref) return null
-        console.log('---', ref.state.isOpen, findDOMNode(ref))
+//        console.log('---', ref.state.isOpen, findDOMNode(ref))
     }
 
     getBody() {
@@ -58,6 +63,11 @@ class Article extends Component {
             </section>
         )
     }
+
+    handleDelete = ev => {
+        ev.preventDefault()
+        this.props.deleteArticle(this.props.article.id)
+    }
 }
 
-export default Article
+export default connect(null, { deleteArticle })(Article)

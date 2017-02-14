@@ -33,7 +33,10 @@
   "dependencies": {
     "react": "^15.3.2",
     "react-addons-css-transition-group": "^15.4.2",
+    "react-day-picker": "^4.0.0",
     "react-dom": "^15.3.2",
-    "react-select": "^1.0.0-rc.3"
+    "react-redux": "^5.0.2",
+    "react-select": "^1.0.0-rc.3",
+    "redux": "^3.6.0"
   }
 }
