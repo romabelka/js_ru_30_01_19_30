@@ -32,7 +32,6 @@ class CommentList extends Component {
             <div>
                 <a href="#" onClick={this.toggleOpen}>{actionText} comments</a>
                 {this.getBody()}
-                <Answer />
             </div>
         )
     }
