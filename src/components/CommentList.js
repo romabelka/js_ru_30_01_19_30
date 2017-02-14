@@ -1,10 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Comment from './Comment'
-<<<<<<< HEAD
-import Answer from './Answer'
-=======
 import NewCommentForm from './NewCommentForm'
->>>>>>> upstream/master
 
 class CommentList extends Component {
     static propTypes = {
