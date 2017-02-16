@@ -1,4 +1,5 @@
-import {INCREMENT, DELETE_ARTICLE, CHANGE_DATE_RANGE, CHANGE_SELECTION, LOAD_ALL_ARTICLES} from '../constants'
+import {INCREMENT, DELETE_ARTICLE, CHANGE_DATE_RANGE, CHANGE_SELECTION, LOAD_ALL_ARTICLES, START, SUCCESS, FAIL} from '../constants'
+import $ from 'jquery'
 
 
 export function increment() {
@@ -34,5 +35,25 @@ export function loadAllArticles() {
     return {
         type: LOAD_ALL_ARTICLES,
         callAPI: '/api/article'
+    }
+}
+
+export function loadAllArticlesThunk() {
+    return (dispatch) => {
+        dispatch({
+            type: LOAD_ALL_ARTICLES + START
+        })
+
+        setTimeout(() => {
+            $.get('/api/article')
+                .done(response => dispatch({
+                    type: LOAD_ALL_ARTICLES + SUCCESS,
+                    response
+                }))
+                .fail(error => dispatch({
+                    type: LOAD_ALL_ARTICLES + FAIL,
+                    error
+                }))
+        }, 1000)
     }
 }

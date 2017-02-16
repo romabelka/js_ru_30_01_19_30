@@ -4,7 +4,7 @@ import Filters from './Filters'
 import 'react-select/dist/react-select.css'
 import Counter from './Counter'
 import {connect} from 'react-redux'
-import {loadAllArticles} from '../AC'
+import {loadAllArticles, loadAllArticlesThunk} from '../AC'
 
 class App extends Component {
     state = {
@@ -12,7 +12,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.props.loadAllArticles()
+        this.props.loadAllArticlesThunk()
     }
 
     render() {
@@ -38,4 +38,4 @@ class App extends Component {
 App.propTypes = {
 }
 
-export default connect(null, {loadAllArticles})(App)
+export default connect(null, {loadAllArticles, loadAllArticlesThunk})(App)
