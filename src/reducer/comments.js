@@ -1,6 +1,10 @@
 import {normalizedComments as defaultComments} from '../fixtures'
+import {arrayToMap} from '../utils'
 
-export default (state = defaultComments, action) => {
+const defaultState = arrayToMap(defaultComments)
+
+
+export default (state = defaultState, action) => {
     const {type, payload} = action
 
     switch (type) {

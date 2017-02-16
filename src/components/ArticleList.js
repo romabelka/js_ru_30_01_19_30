@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import Article from './Article/index'
 import accordion from '../decorators/accordion'
 import {connect} from 'react-redux'
+import {mapToArr} from '../utils'
 
 class ArticleList extends Component {
     render() {
@@ -22,7 +23,8 @@ class ArticleList extends Component {
 
 export default connect(
     (state) => {
-        const { filters, articles } = state
+        const { filters } = state
+        const articles = mapToArr(state.articles)
         const {selected} = filters
         const { from, to } = filters.dateRange
 

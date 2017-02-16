@@ -12,14 +12,12 @@ class App extends Component {
     }
 
     render() {
-        const {articles} = this.props
         return (
             <div>
                 <Counter/>
                 User: <input type="text" value={this.state.user} onChange={this.handleUserChange}/>
                 <Filters />
                 <ArticleList />
-                <Chart articles={articles}/>
             </div>
         )
     }
@@ -34,9 +32,6 @@ class App extends Component {
 }
 
 App.propTypes = {
-    articles: PropTypes.array.isRequired
 }
 
-export default connect(state => ({
-    articles: state.articles
-}))(App)
+export default App
