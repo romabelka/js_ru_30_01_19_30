@@ -1,19 +1,30 @@
-import {DELETE_ARTICLE, LOAD_ALL_ARTICLES} from '../constants'
+import {DELETE_ARTICLE, LOAD_ALL_ARTICLES, FAIL, SUCCESS, START} from '../constants'
 import {arrayToMap} from '../utils'
 
-const defaultState = arrayToMap([])
+const defaultState = {
+    isLoading: false,
+    entities: arrayToMap([])
+}
 
-export default (articles = defaultState, action) => {
+
+export default (state = defaultState, action) => {
     const {type, payload} = action
 
     switch (type) {
         case DELETE_ARTICLE:
             //todo fix me
-            return articles.filter(article => article.id !== payload.id)
+            return state.filter(article => article.id !== payload.id)
 
-        case LOAD_ALL_ARTICLES:
-            return arrayToMap(action.response)
+        case LOAD_ALL_ARTICLES + START:
+            return {...state, isLoading: true}
+
+        case LOAD_ALL_ARTICLES + SUCCESS:
+            return {
+                ...state,
+                entities: arrayToMap(action.response),
+                isLoading: false
+            }
     }
 
-    return articles
+    return state
 }
