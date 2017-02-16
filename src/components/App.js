@@ -1,14 +1,18 @@
 import React, { PropTypes, Component } from 'react'
 import ArticleList from './ArticleList'
-import Chart from './Chart'
 import Filters from './Filters'
 import 'react-select/dist/react-select.css'
 import Counter from './Counter'
 import {connect} from 'react-redux'
+import {loadAllArticles} from '../AC'
 
 class App extends Component {
     state = {
         user: ''
+    }
+
+    componentDidMount() {
+        this.props.loadAllArticles()
     }
 
     render() {
@@ -34,4 +38,4 @@ class App extends Component {
 App.propTypes = {
 }
 
-export default App
+export default connect(null, {loadAllArticles})(App)
