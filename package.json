@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run dev",
+    "start": "concurrently \"npm run dev\" \"npm run api\"",
+    "api": "node simple_api/server.js",
     "dev": "webpack-dev-server --hot --inline",
     "build": "webpack"
   },
@@ -25,18 +26,21 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
+    "concurrently": "^3.3.0",
     "css-loader": "^0.26.1",
     "style-loader": "^0.13.1",
     "webpack": "^2.0.0",
     "webpack-dev-server": "^2.0.0"
   },
   "dependencies": {
+    "jquery": "^3.1.1",
     "react": "^15.3.2",
     "react-addons-css-transition-group": "^15.4.2",
     "react-day-picker": "^4.0.0",
     "react-dom": "^15.3.2",
     "react-redux": "^5.0.2",
     "react-select": "^1.0.0-rc.3",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
   }
 }

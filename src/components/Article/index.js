@@ -10,7 +10,7 @@ class Article extends Component {
     static propTypes = {
         article: PropTypes.shape({
             title: PropTypes.string.isRequired,
-            text: PropTypes.string.isRequired,
+            text: PropTypes.string,
             comments: PropTypes.array
         }).isRequired,
         isOpen: PropTypes.bool,
