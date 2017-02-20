@@ -4,12 +4,13 @@ import {Map, Record} from 'immutable'
 import {DefaultReducerState} from './helpers'
 
 const ArticleModel = Record({
-    "id": null,
-    "date": null,
-    "title": null,
-    "text": null,
-    "comments": [],
-    "isLoading": false
+    id: null,
+    date: null,
+    title: null,
+    text: null,
+    comments: [],
+    isLoading: false,
+    isLoaded: false
 })
 
 const defaultState = new DefaultReducerState()
@@ -37,7 +38,7 @@ export default (state = defaultState, action) => {
             return state.setIn(['entities', payload.id, 'isLoading'], true)
 
         case LOAD_ARTICLE + SUCCESS:
-            return state.setIn(['entities', payload.id], new ArticleModel(response))
+            return state.setIn(['entities', payload.id], new ArticleModel({...response, isLoaded: true}))
     }
 
     return state

@@ -25,7 +25,7 @@ class Article extends Component {
 */
 
     componentWillReceiveProps({ isOpen, article, loadArticle}) {
-        if (!this.props.isOpen && isOpen && !article.isLoading && !article.text) loadArticle(article.id)
+        if (!this.props.isOpen && isOpen && !article.isLoading && !article.isLoaded) loadArticle(article.id)
     }
 
     render() {
@@ -60,7 +60,7 @@ class Article extends Component {
     getBody() {
         const {isOpen, article} = this.props
         if (!isOpen) return null
-        if (!article.text) return <Loader />
+        if (!article.isLoaded) return <Loader />
 
         return (
             <section>
