@@ -6,6 +6,7 @@ import CSSTransition from 'react-addons-css-transition-group'
 import './style.css'
 import {connect} from 'react-redux'
 import {deleteArticle, loadArticle} from '../../AC'
+import {articleSelectorFactory} from '../../selectors'
 
 class Article extends Component {
     static propTypes = {
@@ -76,4 +77,11 @@ class Article extends Component {
     }
 }
 
-export default connect(null, { deleteArticle, loadArticle })(Article)
+export default connect(() => {
+    const articleSelector = articleSelectorFactory()
+    return (state, props) => {
+        return {
+            article: articleSelector(state, props)
+        }
+    }
+}, { deleteArticle, loadArticle })(Article)
