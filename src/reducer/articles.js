@@ -1,10 +1,17 @@
 import {DELETE_ARTICLE, LOAD_ALL_ARTICLES, ADD_COMMENT, FAIL, SUCCESS, START} from '../constants'
 import {arrayToMap} from '../utils'
+import {Map, Record} from 'immutable'
+import {DefaultReducerState} from './helpers'
 
-const defaultState = {
-    isLoading: false,
-    entities: arrayToMap([])
-}
+const ArticleModel = Record({
+    "id": null,
+    "date": null,
+    "title": null,
+    "text": null,
+    "comments": []
+})
+
+const defaultState = new DefaultReducerState()
 
 
 export default (state = defaultState, action) => {
@@ -12,32 +19,18 @@ export default (state = defaultState, action) => {
 
     switch (type) {
         case DELETE_ARTICLE:
-            //todo fix me
-            const entities = {...state.entities}
-            delete entities[payload.id]
-            return {...state, entities}
+            return state.deleteIn(['entities', payload.id])
 
         case LOAD_ALL_ARTICLES + START:
-            return {...state, isLoading: true}
+            return state.set('isLoading', true)
 
         case LOAD_ALL_ARTICLES + SUCCESS:
-            return {
-                ...state,
-                entities: arrayToMap(action.response),
-                isLoading: false
-            }
+            return state
+                .set('isLoading', false)
+                .set('entities', arrayToMap(action.response, ArticleModel))
 
         case ADD_COMMENT:
-            return {
-                ...state,
-                entities: {
-                    ...state.entities,
-                    [payload.articleId]: {
-                        ...state.entities[payload.articleId],
-                        comments: (state.entities[payload.articleId].comments || []).concat(randomId)
-                    }
-                }
-            }
+            return state.updateIn(['entities', payload.articleId, 'comments'], comments => comments.concat(randomId))
     }
 
     return state

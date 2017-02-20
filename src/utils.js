@@ -1,9 +1,11 @@
-export function arrayToMap(arr) {
-    return arr.reduce((acc, entity) => ({
-        ...acc, [entity.id]: entity
-    }), {})
+import {Map} from 'immutable'
+
+export function arrayToMap(arr, Model) {
+    return arr.reduce((acc, entity) =>
+        acc.set(entity.id, Model ? new Model(entity) : entity)
+        , new Map({}))
 }
 
 export function mapToArr(map) {
-    return Object.keys(map).map(id => map[id])
+    return map.valueSeq().toArray()
 }

@@ -10,7 +10,7 @@ export default (state = defaultState, action) => {
 
     switch (type) {
         case ADD_COMMENT:
-            return {...state, [randomId]: {...payload.comment, id: randomId}}
+            return state.set(randomId, {...payload.comment, id: randomId})
     }
 
     return state
