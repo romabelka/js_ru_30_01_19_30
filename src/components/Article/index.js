@@ -1,10 +1,11 @@
 import React, {Component, PropTypes} from 'react'
 import {findDOMNode} from 'react-dom'
 import CommentList from '../CommentList'
+import Loader from '../Loader'
 import CSSTransition from 'react-addons-css-transition-group'
 import './style.css'
 import {connect} from 'react-redux'
-import {deleteArticle} from '../../AC'
+import {deleteArticle, loadArticle} from '../../AC'
 
 class Article extends Component {
     static propTypes = {
@@ -22,6 +23,10 @@ class Article extends Component {
         return nextProps.isOpen !== this.props.isOpen
     }
 */
+
+    componentWillReceiveProps({ isOpen, article, loadArticle}) {
+        if (!this.props.isOpen && isOpen && !article.isLoading && !article.text) loadArticle(article.id)
+    }
 
     render() {
         const {article, toggleOpen} = this.props
@@ -55,6 +60,7 @@ class Article extends Component {
     getBody() {
         const {isOpen, article} = this.props
         if (!isOpen) return null
+        if (!article.text) return <Loader />
 
         return (
             <section>
@@ -70,4 +76,4 @@ class Article extends Component {
     }
 }
 
-export default connect(null, { deleteArticle })(Article)
+export default connect(null, { deleteArticle, loadArticle })(Article)
