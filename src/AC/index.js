@@ -1,4 +1,5 @@
-import {INCREMENT, DELETE_ARTICLE, CHANGE_DATE_RANGE, CHANGE_SELECTION, LOAD_ALL_ARTICLES, START, SUCCESS, FAIL} from '../constants'
+import {INCREMENT, DELETE_ARTICLE, CHANGE_DATE_RANGE, CHANGE_SELECTION, LOAD_ALL_ARTICLES, ADD_COMMENT,
+    START, SUCCESS, FAIL} from '../constants'
 import $ from 'jquery'
 
 
@@ -55,5 +56,13 @@ export function loadAllArticlesThunk() {
                     error
                 }))
         }, 1000)
+    }
+}
+
+export function addComment(comment, articleId) {
+    return {
+        type: ADD_COMMENT,
+        payload: { comment, articleId },
+        generateId: true
     }
 }

@@ -1,4 +1,4 @@
-import {DELETE_ARTICLE, LOAD_ALL_ARTICLES, FAIL, SUCCESS, START} from '../constants'
+import {DELETE_ARTICLE, LOAD_ALL_ARTICLES, ADD_COMMENT, FAIL, SUCCESS, START} from '../constants'
 import {arrayToMap} from '../utils'
 
 const defaultState = {
@@ -8,12 +8,14 @@ const defaultState = {
 
 
 export default (state = defaultState, action) => {
-    const {type, payload} = action
+    const {type, payload, randomId} = action
 
     switch (type) {
         case DELETE_ARTICLE:
             //todo fix me
-            return state.filter(article => article.id !== payload.id)
+            const entities = {...state.entities}
+            delete entities[payload.id]
+            return {...state, entities}
 
         case LOAD_ALL_ARTICLES + START:
             return {...state, isLoading: true}
@@ -23,6 +25,18 @@ export default (state = defaultState, action) => {
                 ...state,
                 entities: arrayToMap(action.response),
                 isLoading: false
+            }
+
+        case ADD_COMMENT:
+            return {
+                ...state,
+                entities: {
+                    ...state.entities,
+                    [payload.articleId]: {
+                        ...state.entities[payload.articleId],
+                        comments: (state.entities[payload.articleId].comments || []).concat(randomId)
+                    }
+                }
             }
     }
 
