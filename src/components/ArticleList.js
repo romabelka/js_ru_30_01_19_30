@@ -2,12 +2,13 @@ import React, {Component, PropTypes} from 'react'
 import Article from './Article/index'
 import accordion from '../decorators/accordion'
 import {connect} from 'react-redux'
-import {mapToArr} from '../utils'
+import {filteredArticlesSelector} from '../selectors'
 import Loader from './Loader'
 
 class ArticleList extends Component {
     render() {
         const {articles, loading, toggleOpenItem, isOpenItem} = this.props
+        console.log('---', 2)
 
         if (loading) {
             return <Loader/>
@@ -15,7 +16,7 @@ class ArticleList extends Component {
 
         const articleElements = articles.map((article) => <li key={article.id}>
             <Article
-                article={article}
+                id={article.id}
                 isOpen={isOpenItem(article.id)}
                 toggleOpen={toggleOpenItem(article.id)}/>
         </li>)
@@ -29,18 +30,8 @@ class ArticleList extends Component {
 
 export default connect(
     (state) => {
-        const { filters } = state
-        const articles = mapToArr(state.articles.entities)
-        const {selected} = filters
-        const { from, to } = filters.dateRange
-
-        const filteredArticles = articles.filter(article => {
-            const published = Date.parse(article.date)
-            return (!selected.length || selected.includes(article.id)) &&
-                (!from || !to || (published > from && published < to))
-        })
         return {
-            articles: filteredArticles,
+            articles: filteredArticlesSelector(state),
             loading: state.articles.isLoading
         }
     }
