@@ -5,6 +5,9 @@ import ArticleList from './routeHandlers/ArticleList'
 import Filters from './routeHandlers/Filters'
 import Counter from './routeHandlers/Counter'
 import ArticlePage from './routeHandlers/ArticlePage'
+import NotFoundPage from './routeHandlers/NotFoundPage'
+import AuthorizedOnlyPage from './routeHandlers/AuthorizedOnlyPage'
+import store from './store'
 
 export default (
     <Router history={browserHistory}>
@@ -14,6 +17,15 @@ export default (
             </Route>
             <Route path="filters" component={Filters}/>
             <Route path="counter" component={Counter}/>
+            <Route path="admin" component={AuthorizedOnlyPage}
+                onEnter={(routeState, replace) => {
+                    if (!store.getState().user) {
+                        replace('/error')
+                    }
+                    }
+                }
+            />
+            <Route path="*" component={NotFoundPage} />
         </Route>
     </Router>
 )

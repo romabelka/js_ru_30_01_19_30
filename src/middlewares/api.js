@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import {START, SUCCESS, FAIL} from '../constants'
+import {browserHistory} from 'react-router'
 
 export default store => next => action => {
     if (!action.callAPI) return next(action)
@@ -11,6 +12,9 @@ export default store => next => action => {
     setTimeout(() => {
         $.get(callAPI)
             .done(response => next({...rest, type: type + SUCCESS, response}))
-            .fail(error => next({...rest, type: type + FAIL, error}))
+            .fail(error => {
+                next({...rest, type: type + FAIL, error})
+                browserHistory.replace('/error')
+            })
     }, 1000)
 }
