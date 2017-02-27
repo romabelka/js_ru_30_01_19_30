@@ -21,6 +21,6 @@ Comment.propTypes = {
 
 export default connect((state, props) => {
     const {id} = props
-    const comment = state.comments.get(id)
+    const comment = state.comments.entities.get(id)
     return { comment }
 })(Comment)
