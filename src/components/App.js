@@ -19,7 +19,6 @@ class App extends Component {
         return (
             <div>
                 <Counter/>
-                User: <input type="text" value={this.state.user} onChange={this.handleUserChange}/>
                 <Filters />
                 <ArticleList />
             </div>
