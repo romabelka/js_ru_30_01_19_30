@@ -14,7 +14,7 @@ class Article extends Component {
             title: PropTypes.string.isRequired,
             text: PropTypes.string,
             comments: PropTypes.array
-        }).isRequired,
+        }),
         isOpen: PropTypes.bool,
         toggleOpen: PropTypes.func
     }
@@ -25,12 +25,14 @@ class Article extends Component {
     }
 */
 
-    componentWillReceiveProps({ isOpen, article, loadArticle}) {
-        if (!this.props.isOpen && isOpen && !article.isLoading && !article.isLoaded) loadArticle(article.id)
+    componentDidMount() {
+        const { article, id, loadArticle } = this.props
+        if (!article || (!article.isLoading && !article.isLoaded)) loadArticle(id)
     }
 
     render() {
         const {article, toggleOpen} = this.props
+        if (!article) return null
         return (
             <div ref = {this.getContainerRef}>
                 <h3 onClick={toggleOpen}>

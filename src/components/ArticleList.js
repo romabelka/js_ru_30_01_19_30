@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {filteredArticlesSelector} from '../selectors'
 import Loader from './Loader'
 import {loadAllArticles} from '../AC'
+import {Link} from 'react-router'
 
 class ArticleList extends Component {
     componentDidMount() {
@@ -20,10 +21,7 @@ class ArticleList extends Component {
         }
 
         const articleElements = articles.map((article) => <li key={article.id}>
-            <Article
-                id={article.id}
-                isOpen={isOpenItem(article.id)}
-                toggleOpen={toggleOpenItem(article.id)}/>
+            <Link to={`/articles/${article.id}`}>{article.title}</Link>
         </li>)
         return (
             <ul>
