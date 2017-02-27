@@ -14,7 +14,7 @@ export default store => next => action => {
             .done(response => next({...rest, type: type + SUCCESS, response}))
             .fail(error => {
                 next({...rest, type: type + FAIL, error})
-                browserHistory.replace('/error')
+                browserHistory.replace(`/error?message=${error.statusText}`)
             })
     }, 1000)
 }

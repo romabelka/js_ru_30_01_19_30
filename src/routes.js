@@ -7,6 +7,7 @@ import Counter from './routeHandlers/Counter'
 import ArticlePage from './routeHandlers/ArticlePage'
 import NotFoundPage from './routeHandlers/NotFoundPage'
 import AuthorizedOnlyPage from './routeHandlers/AuthorizedOnlyPage'
+import ErrorPage from './routeHandlers/ErrorPage'
 import store from './store'
 
 export default (
@@ -25,6 +26,7 @@ export default (
                     }
                 }
             />
+            <Route path="error" component={ErrorPage} />
             <Route path="*" component={NotFoundPage} />
         </Route>
     </Router>
