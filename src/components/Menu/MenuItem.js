@@ -10,7 +10,7 @@ class MenuItem extends Component {
         const {path} = this.props
         return (
             <div>
-                <Link to={path}>{path}</Link>
+                <Link to={path} activeStyle={{color: 'red'}}>{path}</Link>
             </div>
         )
     }

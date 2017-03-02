@@ -10,6 +10,12 @@ class CommentList extends Component {
         article: PropTypes.object.isRequired
     }
 
+    static contextTypes = {
+        router: PropTypes.object,
+        store: PropTypes.object,
+        user: PropTypes.string
+    }
+
     state = {
         isOpen: false
     }
@@ -46,6 +52,7 @@ class CommentList extends Component {
 
         const commentItems = comments.map(id => <li key={id}><Comment id={id} /></li>)
         return <div>
+            Username: {this.context.user}
             <ul>{commentItems}</ul>
             <NewCommentForm articleId={id} />
         </div>
@@ -59,4 +66,4 @@ class CommentList extends Component {
     }
 }
 
-export default connect(null, {loadArticleComments})(CommentList)
+export default connect(null, {loadArticleComments}, null, {pure: false})(CommentList)

@@ -8,10 +8,25 @@ class Root extends Component {
 
     };
 
+    state = {
+        user: ''
+    }
+
+    static childContextTypes = {
+        user: PropTypes.string
+    }
+
+    getChildContext() {
+        return {
+            user: this.state.user
+        }
+    }
+
     render() {
         return (
             <Provider store={store}>
                 <div>
+                    <input value={this.state.user} onChange={this.handleUserChange} />
                     <Menu>
                         <MenuItem path="/articles" />
                         <MenuItem path="/filters" />
@@ -22,6 +37,12 @@ class Root extends Component {
                 </div>
             </Provider>
         )
+    }
+
+    handleUserChange = ev => {
+        this.setState({
+            user: ev.target.value
+        })
     }
 }
 

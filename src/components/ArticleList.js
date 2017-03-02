@@ -21,7 +21,7 @@ class ArticleList extends Component {
         }
 
         const articleElements = articles.map((article) => <li key={article.id}>
-            <Link to={`/articles/${article.id}`}>{article.title}</Link>
+            <Link to={`/articles/${article.id}`} activeStyle={{color: 'red'}}>{article.title}</Link>
         </li>)
         return (
             <ul>
