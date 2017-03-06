@@ -6,6 +6,7 @@ import {filteredArticlesSelector} from '../selectors'
 import Loader from './Loader'
 import {loadAllArticles} from '../AC'
 import {Link} from 'react-router'
+import LocalizedText from './LocalizedText'
 
 class ArticleList extends Component {
     componentDidMount() {

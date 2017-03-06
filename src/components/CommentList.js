@@ -4,6 +4,7 @@ import NewCommentForm from './NewCommentForm'
 import Loader from './Loader'
 import {loadArticleComments} from '../AC'
 import {connect} from 'react-redux'
+import LocalizedText from './LocalizedText'
 
 class CommentList extends Component {
     static propTypes = {
@@ -30,7 +31,7 @@ class CommentList extends Component {
         const actionText = this.state.isOpen ? 'hide' : 'show'
         return (
             <div>
-                <a href="#" onClick={this.toggleOpen}>{actionText} comments</a>
+                <a href="#" onClick={this.toggleOpen}><LocalizedText text={`${actionText} comments`}/></a>
                 {this.getBody()}
             </div>
         )

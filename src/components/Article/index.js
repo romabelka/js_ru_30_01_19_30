@@ -7,6 +7,7 @@ import './style.css'
 import {connect} from 'react-redux'
 import {deleteArticle, loadArticle} from '../../AC'
 import {articleSelectorFactory} from '../../selectors'
+import LocalizedText from '../LocalizedText'
 
 class Article extends Component {
     static propTypes = {
@@ -37,7 +38,7 @@ class Article extends Component {
             <div ref = {this.getContainerRef}>
                 <h3 onClick={toggleOpen}>
                     {article.title}
-                    <a href="#" onClick = {this.handleDelete}>Delete me</a>
+                    <a href="#" onClick = {this.handleDelete}><LocalizedText text="delete article"/></a>
                 </h3>
                 <CSSTransition
                     transitionName="article-body"
